@@ -15,3 +15,21 @@ function capitalizar(texto) {
 function validaCampoVazio(texto) {
     return texto === '';
 }
+
+// Adicionar evento de keydown para adicionar amigo ao pressionar Enter
+document.getElementById("amigo").addEventListener("keydown", function (event) 
+{
+  
+  if (event.key === "Enter") {
+    adicionarAmigo();
+  }
+});
+
+listaDeAmigos.push(nomeAmigo);
+  atualizarListaDeAmigos();
+  inputAmigo.value = "";
+  
+// Verifica se o amigo já foi adicionado
+function validaDuplicado(amigo) {
+    return amigos.includes(amigo);
+}
