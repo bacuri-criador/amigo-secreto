@@ -132,3 +132,28 @@ function reiniciarAmigoSecreto() {
     sorteado = '';
     toRemove = '';
 }
+
+
+function ocultarResultado(){
+    if (!sorteioRealizado) {
+        alterarValorElemento('resultado', 'Continue sorteando!');
+        document.getElementById("auto-sorteio").classList.remove("hidden");
+        document.getElementById("hiden-elements").classList.add("hidden");
+    }
+    else{
+        alterarValorElemento('resultado', '');
+        reiniciarAmigoSecreto();
+    }
+    document.getElementById("auto-sorteio").classList.remove("hidden");
+    document.getElementById("hiden-elements").classList.add("hidden");
+}
+
+// Limpa o valor de um elemento
+function limparElemento(elemento) {
+    alterarValorElemento(elemento, '');
+    document.getElementById(elemento).value = '';
+}
+
+function alterarValorElemento(elemento, valor) {
+    document.getElementById(elemento).innerHTML = valor;
+}
