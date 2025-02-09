@@ -115,3 +115,20 @@ function sortearAmigo() {
     let mensagem = "O Amigo Secreto Sorteado é: " + sorteado;
     alterarValorElemento('resultado', mensagem);
 }
+
+// Atualiza a lista de amigos no HTML
+function atualizarListaAmigos() {
+    alterarValorElemento('listaAmigos', amigos.map(amigo => `<li>${amigo}</li>`).join(''));
+}
+
+// Limpa a lista de amigos no HTML
+function reiniciarAmigoSecreto() {
+    limparElemento('amigo');
+    limparElemento('resultado');
+    limparElemento('listaAmigos');
+    document.getElementById("hiden-elements").classList.add("hidden");
+    amigos = [];
+    sorteioRealizado = false;
+    sorteado = '';
+    toRemove = '';
+}
