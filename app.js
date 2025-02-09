@@ -33,3 +33,49 @@ listaDeAmigos.push(nomeAmigo);
 function validaDuplicado(amigo) {
     return amigos.includes(amigo);
 }
+
+function validaTrataInput(amigoInput) {
+
+    // remove espaços do começo e final do texto
+    const amigo = capitalizar(amigoInput.trim());
+
+    // verifica se o campo está vazio
+    if (validaCampoVazio(amigo)) {
+        alert('Digite o nome do Amigo!');
+        return;
+    }
+
+    // valida se o nome possui apenas letras
+    if (!/^[a-zA-Z\s]+$/.test(amigo)) {
+        alert(`O nome ${amigo} é inválido! O nome deve conter apenas letras!`);
+        return;
+    }
+
+    // verifica se o amigo já foi adicionado
+    if (validaDuplicado(amigo)) {
+        alert(`O nome do Amigo ${amigo} já foi adicionado, coloque outro!`);
+        return;
+    }
+    amigos.push(amigo);
+}
+
+
+// Adiciona um amigo à lista
+function adicionarAmigo() {
+    const amigoInput = document.getElementById('amigo').value;
+
+    //adiciona amigos separados por vírgula
+    if (amigoInput.includes(',')) {
+        //split a string em um array
+        let amigosInput = amigoInput.split(',');
+        for (let item of amigosInput) {
+           validaTrataInput(item);
+        }
+    }else{
+        validaTrataInput(amigoInput);
+    }
+
+    document.getElementById('resultado').innerHTML = '';
+    atualizarListaAmigos();
+    limparElemento("amigo");
+}
