@@ -79,3 +79,39 @@ function adicionarAmigo() {
     atualizarListaAmigos();
     limparElemento("amigo");
 }
+
+// Sorteia um amigo da lista
+function sortearAmigo() {
+    if (sorteioRealizado) {
+        alert('Todos os nomes já foram sorteados, adicione novos amigos para sortear novamente!');
+        ocultarResultado();
+        return;
+    } 
+    if (amigos.length === 0) {
+        alert('Adicione amigos para sortear!');
+        return;
+    } 
+    
+    if(toRemove){
+        amigos = amigos.filter(amigo => amigo !== toRemove);
+        toRemove = '';
+    }
+    
+    sorteado = amigos[Math.floor(Math.random() * amigos.length)];
+    limparElemento('amigo');
+    limparElemento('listaAmigos');
+    if (amigos.length == 1) {
+        alterarValorElemento('resultado', sorteado);
+        document.getElementById("hiden-elements").classList.remove("hidden");
+        document.getElementById("auto-sorteio").classList.add("hidden");
+        sorteioRealizado = true;
+    }else{
+        alterarValorElemento('resultado', sorteado);
+        document.getElementById("hiden-elements").classList.remove("hidden");
+        document.getElementById("auto-sorteio").classList.remove("hidden");
+        console.log("removeu");
+        toRemove = sorteado;
+    }
+    let mensagem = "O Amigo Secreto Sorteado é: " + sorteado;
+    alterarValorElemento('resultado', mensagem);
+}
